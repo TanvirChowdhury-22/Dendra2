@@ -10,7 +10,7 @@ ELEMENT2 = {
     "TI":"Ti","CR":"Cr","LI":"Li","CS":"Cs","RB":"Rb","ZR":"Zr","MO":"Mo",
     "RU":"Ru","RH":"Rh","IR":"Ir","OS":"Os","RE":"Re","TA":"Ta","GA":"Ga",
     "GE":"Ge","AS":"As","SR":"Sr","BA":"Ba","KR":"Kr","XE":"Xe","AR":"Ar",
-    "HE":"He","NE":"Ne","RN":"Rn","CD":"Cd","CO":"Co","VA":"Va"  # extra coverage
+    "HE":"He","NE":"Ne","RN":"Rn","CD":"Cd","CO":"Co","VA":"Va"
 }
 
 def dist(a, b):
@@ -34,7 +34,7 @@ def element_of(atom):
             return ELEMENT2.get(e.upper(), e.capitalize())
         return e[0].upper()
 
-    fullname = atom.get_fullname()  # 4-char PDB atom name, may include spaces
+    fullname = atom.get_fullname()
     letters_only = "".join(ch for ch in fullname if ch.isalpha())
     if len(letters_only) >= 2:
         cand2 = letters_only[:2].upper()
@@ -60,8 +60,8 @@ def build_single_residue_structure(chain_id, residue):
     sb.init_structure("chrom")
     sb.init_model(0)
     sb.init_chain(chain_id)
-    # Keep residue id exactly as in source
-    res_id = residue.get_id()  # e.g. ('H_', 64, ' ')
+    
+    res_id = residue.get_id()
     sb.init_seg("    ")
     sb.init_residue(residue.get_resname(), res_id[0], res_id[1], res_id[2])
     for atom in residue.get_atoms():
@@ -135,7 +135,7 @@ def add_h_to_oxygen(structure, chain_id, resid_tuple, o_atom, bond_ref_atom=None
 
     ox, oy, oz = o_atom.get_coord()
     rx, ry, rz = bond_ref_atom.get_coord()
-    vx, vy, vz = unit_vec((rx, ry, rz), (ox, oy, oz))  # from heavy neighbor to O
+    vx, vy, vz = unit_vec((rx, ry, rz), (ox, oy, oz))
     hx, hy, hz = ox + oh_length * vx, oy + oh_length * vy, oz + oh_length * vz
 
     base = "HO"
