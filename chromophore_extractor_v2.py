@@ -1,6 +1,6 @@
 import argparse
 from pathlib import Path
-from math import sqrt
+from math import sqrt, cos, sin, radians
 from Bio.PDB import PDBParser, PDBIO, StructureBuilder, Atom
 
 ELEMENT2 = {
@@ -107,57 +107,101 @@ def find_phenolic_oxygen(residue, forced_name=None, debug=True):
         print(f"[DEBUG] Chosen oxygen: {chosen.get_name()} in residue {residue.get_resname()} {residue.get_id()[1]}")
     return chosen
 
-def add_h_to_oxygen(structure, chain_id, resid_tuple, o_atom, bond_ref_atom=None, oh_length=0.96, debug=False):
+def add_h_to_oxygen(structure, chain_id, resid_tuple, o_atom, bond_ref_atom=None,
+                    oh_length=0.96, target_angle_deg=109.0, debug=False):
     chain = structure[0][chain_id]
-    residue = list(chain.get_residues())[0]         
-    atoms = list(residue.get_atoms())               
+    residue = list(chain.get_residues())[0]
+    atoms = list(residue.get_atoms())
 
-    if h_neighbors(atoms, o_atom):
+    if any(a.element == 'H' and dist(a, o_atom) < 1.25 for a in atoms):
         if debug:
-            print(f"[DEBUG] Oxygen {o_atom.get_name()} already has hydrogen — skipping.")
+            print(f"[DEBUG] {o_atom.get_name()} already has an H nearby; skipping.")
         return
 
     if bond_ref_atom is None:
-        hnbrs = heavy_neighbors(atoms, o_atom)
-        if not hnbrs:
-            candidates = [a for a in atoms if element_of(a) != "H" and a is not o_atom]
-            if not candidates:
-                raise ValueError("No heavy atom found to orient O–H.")
-            bond_ref_atom = min(candidates, key=lambda a: dist(a, o_atom))
-            if debug:
-                print(f"[DEBUG] No close heavy neighbor; fallback nearest is "
-                      f"{bond_ref_atom.get_name()} at {dist(bond_ref_atom, o_atom):.2f} A")
-        else:
-            bond_ref_atom = min(hnbrs, key=lambda a: dist(a, o_atom))
-            if debug:
-                print(f"[DEBUG] Using nearest heavy neighbor {bond_ref_atom.get_name()} "
-                      f"at {dist(bond_ref_atom, o_atom):.2f} A")
+        heavies = [a for a in atoms if a is not o_atom and element_of(a) != "H"]
+        if not heavies:
+            raise ValueError("No heavy atom found to orient O–H.")
+        bond_ref_atom = min(heavies, key=lambda a: dist(a, o_atom))
+        if debug:
+            print(f"[DEBUG] Using nearest heavy neighbor {bond_ref_atom.get_name()} "
+                  f"at {dist(bond_ref_atom, o_atom):.2f} Å")
 
+<<<<<<< HEAD
     ox, oy, oz = o_atom.get_coord()
     rx, ry, rz = bond_ref_atom.get_coord()
     vx, vy, vz = unit_vec((rx, ry, rz), (ox, oy, oz))
     hx, hy, hz = ox + oh_length * vx, oy + oh_length * vy, oz + oh_length * vz
+=======
+    O = o_atom.get_coord()
+    C = bond_ref_atom.get_coord()
+
+    u_OC = unit_vec(O, C)                
+    u_CO = (-u_OC[0], -u_OC[1], -u_OC[2])
+
+    ring_neighbors = [a for a in atoms
+                      if a is not o_atom and a is not bond_ref_atom and element_of(a) != "H"]
+    by_name = {a.get_name().strip(): a for a in ring_neighbors}
+    picks = []
+    for nm in ("CE1", "CE2", "CD1", "CD2"):
+        if nm in by_name:
+            picks.append(by_name[nm])
+    if len(picks) < 2:
+        for a in sorted(ring_neighbors, key=lambda x: dist(x, bond_ref_atom)):
+            if a not in picks:
+                picks.append(a)
+            if len(picks) == 2:
+                break
+
+    def norm(v):
+        return (v[0]*v[0] + v[1]*v[1] + v[2]*v[2])**0.5
+
+    if len(picks) >= 2:
+        v1 = picks[0].get_coord() - C
+        v2 = picks[1].get_coord() - C
+        # ring normal n = v1 x v2
+        nx = v1[1]*v2[2] - v1[2]*v2[1]
+        ny = v1[2]*v2[0] - v1[0]*v2[2]
+        nz = v1[0]*v2[1] - v1[1]*v2[0]
+        nlen = norm((nx, ny, nz))
+        if nlen > 1e-6:
+            n = (nx/nlen, ny/nlen, nz/nlen)
+            # t = n x u_CO (lies in ring plane, ⟂ to O–C)
+            tx = n[1]*u_CO[2] - n[2]*u_CO[1]
+            ty = n[2]*u_CO[0] - n[0]*u_CO[2]
+            tz = n[0]*u_CO[1] - n[1]*u_CO[0]
+            tlen = norm((tx, ty, tz))
+            t = (tx/tlen, ty/tlen, tz/tlen) if tlen > 1e-6 else (0.0, 0.0, 1.0)
+        else:
+            t = (0.0, 0.0, 1.0)
+    else:
+        zx, zy, zz = 0.0, 0.0, 1.0
+        dot = u_CO[2]
+        px, py, pz = zx - dot*u_CO[0], zy - dot*u_CO[1], zz - dot*u_CO[2]
+        plen = norm((px, py, pz))
+        t = (1.0, 0.0, 0.0) if plen < 1e-6 else (px/plen, py/plen, pz/plen)
+
+    theta = radians(180.0 - target_angle_deg)
+    d = oh_length
+    hx = O[0] + d*(cos(theta)*u_CO[0] + sin(theta)*t[0])
+    hy = O[1] + d*(cos(theta)*u_CO[1] + sin(theta)*t[1])
+    hz = O[2] + d*(cos(theta)*u_CO[2] + sin(theta)*t[2])
+>>>>>>> 96af0ea (prot-deprot site correction)
 
     base = "HO"
-    existing_names = {a.get_name().strip() for a in atoms}
-    name = base
-    idx = 1
-    while name in existing_names:
-        name = f"HO{idx}"
-        idx += 1
+    existing = {a.get_name().strip() for a in atoms}
+    name = base; k = 1
+    while name in existing:
+        name = f"HO{k}"; k += 1
 
     if debug:
-        print(f"[DEBUG] Adding H '{name}' at ({hx:.3f}, {hy:.3f}, {hz:.3f}); O–H = {oh_length:.2f} A")
+        print(f"[DEBUG] Adding H '{name}' at ({hx:.3f}, {hy:.3f}, {hz:.3f}); "
+              f"O–H = {oh_length:.2f} Å, ∠(C–O–H) ≈ {target_angle_deg:g}°")
 
     h_atom = Atom.Atom(
-        name=name,
-        coord=(hx, hy, hz),       
-        bfactor=1.0,
-        occupancy=1.0,
-        altloc=' ',
-        fullname=f"{name:>4}",
-        serial_number=0,
-        element='H'
+        name=name, coord=(hx, hy, hz),
+        bfactor=1.0, occupancy=1.0, altloc=' ',
+        fullname=f"{name:>4}", serial_number=0, element='H'
     )
     residue.add(h_atom)
 
