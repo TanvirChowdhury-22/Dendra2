@@ -7,7 +7,7 @@ def dist(a, b):
     bx, by, bz = b.get_coord()
     return sqrt((ax-bx)**2 + (ay-by)**2 + (az-bz)**2)
 
-OXYGEN_NAME = "O3"     # or "OH" if you forced that name
+OXYGEN_NAME = "O3"
 PDB_DIR = Path("chromophore_variants")
 
 parser = PDBParser(QUIET=True)
@@ -17,7 +17,7 @@ for pdb_path in sorted(PDB_DIR.glob("*.pdb")):
     tag = name.lower()
 
     structure = parser.get_structure("s", pdb_path)
-    residue = next(structure.get_residues())  # single residue per file
+    residue = next(structure.get_residues())
 
     oxy = None
     hydrogens = []
