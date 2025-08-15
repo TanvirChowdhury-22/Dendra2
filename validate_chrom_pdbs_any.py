@@ -34,7 +34,6 @@ def dist(a, b):
 def analyze_one(pdb_path: Path, oxygen_name: str, ideal_oh: float, tol: float):
     parser = PDBParser(QUIET=True)
     s = parser.get_structure("s", pdb_path)
-    # these files are single-residue structures; grab the first residue
     try:
         r = next(s.get_residues())
     except StopIteration:
