@@ -1,13 +1,13 @@
 Amber/TeraChem QM/MM setups for a Dendra2 construct with a covalently bound chromophore:
-	•	prot/ – chromophore protonated (phenol, net 0 in isolation)
+	
+ 	•	prot/ – chromophore protonated (phenol, net 0 in isolation)
 	•	deprot/ – chromophore deprotonated (phenolate, net −1 in isolation)
 
-Both builds include solvated topologies, minimize, equilibrate, production inputs using Amber sander with TeraChem as the QM engine, and a self-contained runner scripts.
+Include solvated topologies, minimize, equilibrate, production inputs using Amber sander with TeraChem as the QM engine, and runner scripts.
 
 For setting the environment var, if sander is not on $PATH, :
 SANDER=/full/path/to/sander bash prot/MD/run_qmmm_prot.sh
 
-What’s included
 
 Top-level layout
 
@@ -27,11 +27,14 @@ Top-level layout
 
 
 QM region and charge
-	•	QM region for simulation: :60,57,62,140,207
+	
+ 	•	QM region for simulation: :60,57,62,140,207
 	•	Spin multiplicity: 1 (closed shell)
 	•	QM charge (formal):
 
-•	Protonated: −1 (5SQ 0, Arg +1, 2×Glu −2, Thr 0 → −1) 
+
+	Protonated: −1 (5SQ 0, Arg +1, 2×Glu −2, Thr 0 → −1) 
+
 
  parmed -p solvated_complex_prot.prmtop -c min_local_solv.rst
 
@@ -82,7 +85,8 @@ System density (g/mL): 0.003711
 Done!
 
 
-•	Deprotonated: −2 (phenolate −1 + Arg +1 + 2×Glu −2 + Thr 0 → −2)
+
+	•	Deprotonated: −2 (phenolate −1 + Arg +1 + 2×Glu −2 + Thr 0 → −2)
 
 parmed -p solvated_complex_deprot.prmtop -c min_local_solv.rst       
 
