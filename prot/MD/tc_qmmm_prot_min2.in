@@ -1,0 +1,21 @@
+QM/MM unrestrained minimization
+&cntrl
+  imin=1, ntmin=1,
+  maxcyc=5000, ncyc=1500,
+  ntb=1, cut=8.0,
+  ntpr=50,
+  ifqnt=1,
+  ntr=0
+/
+&qmmm
+  qmmask=':60,57,62,140,207',
+  qmcharge=-1,
+  qm_theory='terachem',
+  qmmm_int=1,
+  qm_ewald=1
+/
+&tc
+  method='B3LYP',
+  basis='6-311G**'
+/
+

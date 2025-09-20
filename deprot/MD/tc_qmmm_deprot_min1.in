@@ -1,0 +1,22 @@
+QM/MM restrained minimization
+&cntrl
+  imin=1, ntmin=1,
+  maxcyc=3000, ncyc=1000,
+  ntb=1, cut=8.0,
+  ntpr=50,
+  ifqnt=1,
+  ntr=1, restraint_wt=1.0,
+  restraintmask='!(:60,57,62,140,207)'
+/
+&qmmm
+  qmmask=':60,57,62,140,207',
+  qmcharge=-2,
+  qm_theory='terachem',
+  qmmm_int=1,     
+  qm_ewald=1,
+  qm_pme=1
+/
+&tc
+  method='b3lyp',
+  basis='6-311g**'
+/

@@ -1,0 +1,25 @@
+source leaprc.protein.ff14SB
+addPdbResMap { { 1 "VAL" "VAL" } { 0 "ASN" "ASN" } }   
+source leaprc.gaff2
+loadamberparams 5SQ_deprot.frcmod               
+
+protA = loadpdb Res_1-59.pdb            
+protB = loadpdb Res_61-rest.pdb 
+SQU   = loadmol2 5SQ_deprot.mol2              
+
+complex = combine { protA SQU protB }
+remove complex complex.60.N                         
+remove complex complex.60.C                 
+
+bond complex.59.C   complex.60.N1              
+bond complex.60.C3  complex.61.N          
+
+check complex
+
+source leaprc.water.tip3p
+solvateOct complex TIP3PBOX 10.0
+addIonsRand complex Na+ 0 
+
+saveamberparm complex solvated_complex_deprot.prmtop solvated_complex_deprot.inpcrd
+savepdb       complex solvated_complex_deprot.pdb
+quit
