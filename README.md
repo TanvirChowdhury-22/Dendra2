@@ -1,4 +1,4 @@
-Amber/TeraChem QM/MM setups for a Dendra2 construct with a covalently bound chromophore:
+Amber/TeraChem QM/MM setups for a Dendra2 chain A with a covalently bound chromophore 5SQ:
 	
  	•	prot/ – chromophore protonated (phenol, net 0 in isolation)
 	•	deprot/ – chromophore deprotonated (phenolate, net −1 in isolation)
