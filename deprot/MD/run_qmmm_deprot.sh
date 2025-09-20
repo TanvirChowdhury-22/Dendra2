@@ -12,7 +12,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DEPROT_DIR="$(dirname "$SCRIPT_DIR")"
 
 PRMTOP="$DEPROT_DIR/solvated_complex_deprot.prmtop"
-START_MINLOCAL="$DEPROT_DIR/min_local_solv.rst"
+START_MINLOCAL="$DEPROT_DIR/min_local_solv_deprot.rst"
 MD_DIR="$SCRIPT_DIR"
 
 [[ -f "$PRMTOP" ]] || die "Missing $PRMTOP"
