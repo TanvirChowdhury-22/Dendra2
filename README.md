@@ -10,6 +10,7 @@ SANDER=/full/path/to/sander bash prot/MD/run_qmmm_prot.sh
 What’s included
 
 Top-level layout
+
 Dendra2/
   prot/                    # protonated build
     MD/                    # QM/MM mdins + runner script
@@ -24,7 +25,8 @@ Dendra2/
     solvated_complex_deprot.*# deprotonated solvated system (prmtop/inpcrd/pdb)
     min_local_solv_deprot.*# deprotonated solvent-only minimization (before QM/MM)
 
-  QM region and charge
+
+QM region and charge
 	•	QM region for simulation: :60,57,62,140,207
 	•	Spin multiplicity: 1 (closed shell)
 	•	QM charge (formal):
