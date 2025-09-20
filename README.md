@@ -127,7 +127,8 @@ System density (g/mL): 0.003706
 Done!
 
 QM method
-	•	DFT: B3LYP
+	
+ 	•	DFT: B3LYP
 	•	Basis: 6-311G**
 	•	Electrostatics: electrostatic embedding (qmmm_int=1), periodic QM/MM (qm_ewald=1)
 
@@ -148,8 +149,8 @@ Reason for the residues selected in the QM region:
 Protonated version simulation
 From the project root:
 
-chmod +x prot/MD/run_qmmm_prot.sh
-bash prot/MD/run_qmmm_prot.sh
+	chmod +x prot/MD/run_qmmm_prot.sh
+	bash prot/MD/run_qmmm_prot.sh
 
 it does in order:
 
