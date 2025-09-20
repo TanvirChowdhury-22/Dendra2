@@ -132,6 +132,7 @@ chmod +x prot/MD/run_qmmm_prot.sh
 bash prot/MD/run_qmmm_prot.sh
 
 it does in order:
+
 	1.	Min1 – restrained QM/MM minimization (starts from prot/min_local_solv.rst)
 	2.	Min2 – unrestrained QM/MM minimization
 	3.	Eq1 – NVT heat 0 → 300 K (dt=1 fs, light restraints on MM heavy atoms)
