@@ -35,96 +35,99 @@ QM region and charge
 
 	Protonated: −1 (5SQ 0, Arg +1, 2×Glu −2, Thr 0 → −1) 
 
+QM region charge check using PARMED
 
- parmed -p solvated_complex_prot.prmtop -c min_local_solv.rst
+	 parmed -p solvated_complex_prot.prmtop -c min_local_solv.rst
+	
+	                 ./       |      |        \.
+	               .:(        |i __ j|        ):`.
+		             .'   `._     |`::::'|     _.'    `.
+	           .'        "---.j `::' f.---"         `.
+	     _____/     ___    ____      __    __  ____   ___    
+	    |      \   |   |  |     `__'|  \  /  ||    | |   \    
+	    |  .-.  | .'   `| | .-.  |-/|   \/   || ___| |  . \   
+	    |  |_|  | |  i  | | |_| /"":|        || |    | | \ \  
+	    |       / | .^. | |    /::::|        || |__. | |  \ \ 
+	    |  ----'  | | | | |    \ :: |        ||  __| | |  |  )
+	    |  |     .' ''' `.|  |\ \   |  i  i  j| |    . | /  /  
+	    |  |     |   _   ||  | \ \  |  |\/|  || |__. | |.  / .
+	   [|  |     |  | |  ||  |  \ \ |  |  |  ||    | |    /   ].
+	  ] `--'     :--' `--::--'   \_|`--' ::--"|____|-"-- /    :[
+	  |      __  ::-'''`.:' "--.    .----::.----:: ,.---._    :|
+	  [  .-""  "`'              \  /      "      `'       `-. :].
+	 ]:.'                        \/                          `.:[
+	 |/                                                        \|
 
-                 ./       |      |        \.
-               .:(        |i __ j|        ):`.
-             .'   `._     |`::::'|     _.'    `.
-           .'        "---.j `::' f.---"         `.
-     _____/     ___    ____      __    __  ____   ___    
-    |      \   |   |  |     `__'|  \  /  ||    | |   \    
-    |  .-.  | .'   `| | .-.  |-/|   \/   || ___| |  . \   
-    |  |_|  | |  i  | | |_| /"":|        || |    | | \ \  
-    |       / | .^. | |    /::::|        || |__. | |  \ \ 
-    |  ----'  | | | | |    \ :: |        ||  __| | |  |  )
-    |  |     .' ''' `.|  |\ \   |  i  i  j| |    . | /  /  
-    |  |     |   _   ||  | \ \  |  |\/|  || |__. | |.  / .
-   [|  |     |  | |  ||  |  \ \ |  |  |  ||    | |    /   ].
-  ] `--'     :--' `--::--'   \_|`--' ::--"|____|-"-- /    :[
-  |      __  ::-'''`.:' "--.    .----::.----:: ,.---._    :|
-  [  .-""  "`'              \  /      "      `'       `-. :].
- ]:.'                        \/                          `.:[
- |/                                                        \|
-
-ParmEd: a Parameter file Editor
-
-
-Loaded Amber topology file solvated_complex.prmtop with coordinates from min_local_solv.rst
-
-Reading input from STDIN...
-> strip !(:60,57,62,140,207)
-Removing mask '!(:60,57,62,140,207)' (33385 atoms) from the topology file.
-> summary
-Amino Acid Residues:   4
-Nucleic Acid Residues: 0
-Number of cations:     0
-Number of anions:      0
-Num. of solvent mols:  0
-Num. of unknown res:   1
-Total charge (e-):     -0.9140
-Total mass (amu):      851.8660
-Number of atoms:       108
-Number of residues:    5
-Residue set:           5SQ, ARG, GLU, THR
-Residue count:         5SQ: 1, ARG: 1, GLU: 2, THR: 1
-System volume (ang^3): 381203.01
-System density (g/mL): 0.003711
-
-> quit
-Done!
+	ParmEd: a Parameter file Editor
 
 
+	Loaded Amber topology file solvated_complex.prmtop with coordinates from min_local_solv.rst
+	
+	Reading input from STDIN...
+	> strip !(:60,57,62,140,207)
+	Removing mask '!(:60,57,62,140,207)' (33385 atoms) from the topology file.
+	> summary
+	Amino Acid Residues:   4
+	Nucleic Acid Residues: 0
+	Number of cations:     0
+	Number of anions:      0
+	Num. of solvent mols:  0
+	Num. of unknown res:   1
+	Total charge (e-):     -0.9140
+	Total mass (amu):      851.8660
+	Number of atoms:       108
+	Number of residues:    5
+	Residue set:           5SQ, ARG, GLU, THR
+	Residue count:         5SQ: 1, ARG: 1, GLU: 2, THR: 1
+	System volume (ang^3): 381203.01
+	System density (g/mL): 0.003711
+	
+	> quit
+	Done!
+	
 
-	•	Deprotonated: −2 (phenolate −1 + Arg +1 + 2×Glu −2 + Thr 0 → −2)
 
-parmed -p solvated_complex_deprot.prmtop -c min_local_solv.rst       
+QM region charge check using PARMED
 
-                                  _____
-                         __...---'-----`---...__
-                   _===============================
-   ______________,/'      `---..._______...---'
-  (______________). .    ,--'                            
-   /    /.---'       `. /                  
-  '--------_  - - - - _/         P A R M E D
-            `~~~~~~~~'
+	Deprotonated: −2 (phenolate −1 + Arg +1 + 2×Glu −2 + Thr 0 → −2)
 
-ParmEd: a Parameter file Editor
-
-
-Loaded Amber topology file solvated_complex_deprot.prmtop with coordinates from min_local_solv.rst
-
-Reading input from STDIN...
-> strip !(:60,57,62,140,207)
-Removing mask '!(:60,57,62,140,207)' (33389 atoms) from the topology file.
-> summary
-Amino Acid Residues:   4
-Nucleic Acid Residues: 0
-Number of cations:     0
-Number of anions:      0
-Num. of solvent mols:  0
-Num. of unknown res:   1
-Total charge (e-):     -1.7880
-Total mass (amu):      850.8580
-Number of atoms:       107
-Number of residues:    5
-Residue set:           ***, ARG, GLU, THR
-Residue count:         ***: 1, ARG: 1, GLU: 2, THR: 1
-System volume (ang^3): 381233.69
-System density (g/mL): 0.003706
-
-> quit
-Done!
+	parmed -p solvated_complex_deprot.prmtop -c min_local_solv_deprot.rst       
+	
+	                                  _____
+	                         __...---'-----`---...__
+	                   _===============================
+	   ______________,/'      `---..._______...---'
+	  (______________). .    ,--'                            
+	   /    /.---'       `. /                  
+	  '--------_  - - - - _/         P A R M E D
+	            `~~~~~~~~'
+	
+	ParmEd: a Parameter file Editor
+	
+	
+	Loaded Amber topology file solvated_complex_deprot.prmtop with coordinates from min_local_solv.rst
+	
+	Reading input from STDIN...
+	> strip !(:60,57,62,140,207)
+	Removing mask '!(:60,57,62,140,207)' (33389 atoms) from the topology file.
+	> summary
+	Amino Acid Residues:   4
+	Nucleic Acid Residues: 0
+	Number of cations:     0
+	Number of anions:      0
+	Num. of solvent mols:  0
+	Num. of unknown res:   1
+	Total charge (e-):     -1.7880
+	Total mass (amu):      850.8580
+	Number of atoms:       107
+	Number of residues:    5
+	Residue set:           ***, ARG, GLU, THR
+	Residue count:         ***: 1, ARG: 1, GLU: 2, THR: 1
+	System volume (ang^3): 381233.69
+	System density (g/mL): 0.003706
+	
+	> quit
+	Done!
 
 QM method
 	
