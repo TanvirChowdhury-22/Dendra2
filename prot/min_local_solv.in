@@ -1,4 +1,4 @@
-local fix of 59–61 only (hard restraints) | solvated PME
+local fix of 59–61 only
 &cntrl
   imin=1, ntmin=1,
   maxcyc=400, ncyc=200,
