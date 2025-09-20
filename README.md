@@ -161,6 +161,6 @@ it does in order:
 	2.	Min2 – unrestrained QM/MM minimization
 	3.	Eq1 – NVT heat 0 → 300 K (dt=1 fs, light restraints on MM heavy atoms)
 	4.	Eq2 – NPT density at 300 K / 1 atm (dt=2 fs, restraints weakened)
-	5.	Eq3 – short NPT hold (dt=2 fs, restraints feathered down)
+	5.	Eq3 – short NPT hold (dt=2 fs, restraints slightly weakend)
 	6.	Prod NVT – 5 ns, dt=2 fs, no restraints
 	7.	Prod NPT – 5 ns, dt=2 fs, no restraints
