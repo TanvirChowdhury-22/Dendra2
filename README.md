@@ -136,10 +136,10 @@ Reason for the residues selected in the QM region:
 		•	Formal charge +1 in both states.
 		•	Arg residue adjacent to the chromophore should work as a proton donor/stabilizer. It interacts through a salt bridge with the glutamate. [https://pubs.acs.org/doi/10.1021/jp309219m]
 	:140 — Glu
-	•	Formal charge −1 in both states.
-	•	conserved Glu near the chromophore that can undergo photo-Kolbe decarboxylation and participate in electron/proton-transfer chemistry. [https://pubs.acs.org/doi/10.1021/jp309219m]
+		•	Formal charge −1 in both states.
+		•	conserved Glu near the chromophore that can undergo photo-Kolbe decarboxylation and participate in electron/proton-transfer chemistry. [https://pubs.acs.org/doi/10.1021/jp309219m]
 	:207 — Glu
-	•	Same as 140 — Glu
+		•	Same as 140 — Glu
 
 Protonated version simulation
 From the project root:
