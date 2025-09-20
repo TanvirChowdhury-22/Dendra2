@@ -127,6 +127,20 @@ QM method
 	•	Basis: 6-311G**
 	•	Electrostatics: electrostatic embedding (qmmm_int=1), periodic QM/MM (qm_ewald=1)
 
+Reason for the residues selected in the QM region:
+
+	:57 — Thr
+		•	Formal charge 0 in both states.
+		•	Proton wires and short-range H-bond networks around the chromophore enable ESPT. Immediate H-bond neighbors should be allowed to polarize/respond self-consistently. [https://pubs.acs.org/doi/10.1021/jp309219m]
+	:62 — Arg
+		•	Formal charge +1 in both states.
+		•	Arg residue adjacent to the chromophore should work as a proton donor/stabilizer. It interacts through a salt bridge with the glutamate. [https://pubs.acs.org/doi/10.1021/jp309219m]
+	:140 — Glu
+	•	Formal charge −1 in both states.
+	•	conserved Glu near the chromophore that can undergo photo-Kolbe decarboxylation and participate in electron/proton-transfer chemistry. [https://pubs.acs.org/doi/10.1021/jp309219m]
+	:207 — Glu
+	•	Same as 140 — Glu
+
 Protonated version simulation
 From the project root:
 
