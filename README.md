@@ -17,13 +17,13 @@ Top-level layout
     		build_files/           # inputs used during system construction
     		complex_prot.*         # pre-solvation complex (prmtop/inpcrd/pdb)
     		solvated_complex_prot.*# protonated solvated system (prmtop/inpcrd/pdb)
-    		min_local_solv.*       # protonated solvent-only minimization (before QM/MM)
+    		min_local_solv.*       # protonated local only minimization for residues 59, 60, 61 (before QM/MM)
 		deprot/                  # deprotonated build
     		MD/                    # QM/MM mdins + runner script
     		build_files/           # (optional) inputs used during system construction
     		complex_deprot.*       # pre-solvation complex (prmtop/inpcrd/pdb)
     		solvated_complex_deprot.*# deprotonated solvated system (prmtop/inpcrd/pdb)
-    		min_local_solv_deprot.*# deprotonated solvent-only minimization (before QM/MM)
+    		min_local_solv_deprot.*# deprotonated local only minimization for residues 59, 60, 61 (before QM/MM)
 
 
 QM region and charge
