@@ -3,7 +3,7 @@ Amber/TeraChem QM/MM setups for a Dendra2 construct with a covalently bound chro
  	•	prot/ – chromophore protonated (phenol, net 0 in isolation)
 	•	deprot/ – chromophore deprotonated (phenolate, net −1 in isolation)
 
-Include solvated topologies, minimize, equilibrate, production inputs using Amber sander with TeraChem as the QM engine, and runner scripts.
+Includes solvated topologies, minimize, equilibrate, production inputs using Amber sander with TeraChem as the QM engine, and runner scripts.
 
 For setting the environment var, if sander is not on $PATH, :
 SANDER=/full/path/to/sander bash prot/MD/run_qmmm_prot.sh
