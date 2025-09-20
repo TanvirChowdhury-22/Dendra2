@@ -12,18 +12,18 @@ What’s included
 Top-level layout
 
 Dendra2/
-  prot/                    # protonated build
-    MD/                    # QM/MM mdins + runner script
-    build_files/           # inputs used during system construction
-    complex_prot.*         # pre-solvation complex (prmtop/inpcrd/pdb)
-    solvated_complex_prot.*# protonated solvated system (prmtop/inpcrd/pdb)
-    min_local_solv.*       # protonated solvent-only minimization (before QM/MM)
-  deprot/                  # deprotonated build
-    MD/                    # QM/MM mdins + runner script
-    build_files/           # (optional) inputs used during system construction
-    complex_deprot.*       # pre-solvation complex (prmtop/inpcrd/pdb)
-    solvated_complex_deprot.*# deprotonated solvated system (prmtop/inpcrd/pdb)
-    min_local_solv_deprot.*# deprotonated solvent-only minimization (before QM/MM)
+	prot/                    # protonated build
+    	MD/                    # QM/MM mdins + runner script
+    	build_files/           # inputs used during system construction
+    	complex_prot.*         # pre-solvation complex (prmtop/inpcrd/pdb)
+    	solvated_complex_prot.*# protonated solvated system (prmtop/inpcrd/pdb)
+    	min_local_solv.*       # protonated solvent-only minimization (before QM/MM)
+	deprot/                  # deprotonated build
+    	MD/                    # QM/MM mdins + runner script
+    	build_files/           # (optional) inputs used during system construction
+    	complex_deprot.*       # pre-solvation complex (prmtop/inpcrd/pdb)
+    	solvated_complex_deprot.*# deprotonated solvated system (prmtop/inpcrd/pdb)
+    	min_local_solv_deprot.*# deprotonated solvent-only minimization (before QM/MM)
 
 
 QM region and charge
