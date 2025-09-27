@@ -13,15 +13,15 @@ Top-level layout
 
 	Dendra2/
 		prot/                    # protonated build
-    		MD/                    # QM/MM mdins + runner script
-    		build_files/           # inputs used during system construction
-    		complex_prot.*         # pre-solvation complex (prmtop/inpcrd/pdb)
+    		MD/                    # protonated QM/MM mdins + runner script
+    		build_files/           # inputs used during protonated system construction
+    		complex_prot.*         # pre-solvation protonated complex (prmtop/inpcrd/pdb)
     		solvated_complex_prot.*# protonated solvated system (prmtop/inpcrd/pdb)
     		min_local_solv.*       # protonated local only minimization for residues 59, 60, 61 (before QM/MM)
 		deprot/                  # deprotonated build
-    		MD/                    # QM/MM mdins + runner script
-    		build_files/           # inputs used during system construction
-    		complex_deprot.*       # pre-solvation complex (prmtop/inpcrd/pdb)
+    		MD/                    # deprotonated QM/MM mdins + runner script
+    		build_files/           # inputs used during deprotonated system construction
+    		complex_deprot.*       # pre-solvation deprotonated complex (prmtop/inpcrd/pdb)
     		solvated_complex_deprot.*# deprotonated solvated system (prmtop/inpcrd/pdb)
     		min_local_solv_deprot.*# deprotonated local only minimization for residues 59, 60, 61 (before QM/MM)
 
@@ -84,12 +84,11 @@ QM region charge check using PARMED
 	
 	> quit
 	Done!
-	
 
-
-QM region charge check using PARMED
 
 	Deprotonated: −2 (phenolate −1 + Arg +1 + 2×Glu −2 + Thr 0 → −2)
+
+QM region charge check using PARMED
 
 	parmed -p solvated_complex_deprot.prmtop -c min_local_solv_deprot.rst       
 	

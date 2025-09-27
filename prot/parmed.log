@@ -1,0 +1,7 @@
+# Log started on 09/28/2025 [mm/dd/yyyy] at 03:20:29
+# Command line arguments: -p solvated_complex_prot_updated.prmtop -c min_local_solv_updated.rst
+# Loaded topologies: solvated_complex_prot_updated.prmtopstrip !(:60,57,62,140,207)
+summary
+strip !(:60,57,62,138,140,207)
+summary
+quit

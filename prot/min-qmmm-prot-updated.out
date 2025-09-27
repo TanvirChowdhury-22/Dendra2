@@ -1,0 +1,309 @@
+
+          -------------------------------------------------------
+          Amber 22 SANDER                              2022
+          -------------------------------------------------------
+
+| Run on 09/28/2025 at 03:32:30
+
+|   Executable path: sander
+| Working directory: /Users/rippercus/Downloads/dendra2/prot
+|          Hostname: Unknown
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: min-qmmm-prot-updated.in                                              
+| MDOUT: min-qmmm-prot-updated.out                                             
+|INPCRD: min_local_solv_updated.rst                                            
+|  PARM: solvated_complex_prot_updated.prmtop                                  
+|RESTRT: min-qmmm-prot-updated.rst                                             
+|  REFC: min_local_solv_updated.rst                                            
+| MDVEL: mdvel                                                                 
+| MDFRC: mdfrc                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd                                                                 
+|MDINFO: mdinfo                                                                
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+|INPTRA: inptraj                                                               
+
+
+ Here is the input file:
+
+QM/MM minimization                                                             
+&cntrl                                                                         
+  imin=1, ntmin=1,                                                             
+  maxcyc=1000, ncyc=500,                                                       
+  ntb=1, cut=8.0,                                                              
+  ntpr=50,                                                                     
+  ifqnt=1,                                                                     
+  ntr=1, restraint_wt=1.0,                                                     
+  restraintmask='!(:60,57,62,138,140,207)'                                     
+/                                                                              
+&qmmm                                                                          
+  qmmask=':60,57,62,138,140,207',                                              
+  qmcharge=-1,                                                                 
+  qm_theory='quick',                                                           
+  qmmm_int=1,                                                                  
+  qm_ewald=0                                                                   
+/                                                                              
+&quick                                                                         
+  method='B3LYP',                                                              
+  basis='6-311G**'                                                             
+/                                                                              
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags:                                                                        
+ getting box info from netcdf restart file
+| NetCDF restart box info found
+|Largest sphere to fit in unit cell has radius =    32.298
+| New format PARM file being parsed.
+| Version =    1.000 Date = 09/28/25 Time = 03:10:14
+ NATOM  =   33494 NTYPES =      15 NBONH =   31702 MBONA  =    1842
+ NTHETH =    4008 MTHETA =    2496 NPHIH =    8102 MPHIA  =    7759
+ NHPARM =       0 NPARM  =       0 NNB   =   59588 NRES   =   10204
+ NBONA  =    1842 NTHETA =    2496 NPHIA =    7759 NUMBND =      99
+ NUMANG =     218 NPTRA  =     214 NATYP =      54 NPHB   =       0
+ IFBOX  =       2 NMXRS  =      40 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+
+|     Memory Use     Allocated
+|     Real             3584367
+|     Hollerith         110688
+|     Integer          1543649
+|     Max Pairs       11164666
+|     nblistReal        401928
+|     nblist Int       1467368
+|       Total            86949 kbytes
+
+| Note: 1-4 EEL scale factors are being read from the topology file.
+
+| Note: 1-4 VDW scale factors are being read from the topology file.
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+LOADING THE QUANTUM ATOMS AS GROUPS
+     Mask :60,57,62,138,140,207; matches   119 atoms
+
+     BOX TYPE: TRUNCATED OCTAHEDRON
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+default_name                                                                    
+
+General flags:
+     imin    =       1, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       1, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       2, ntpr    =      50, ntrx    =       1, ntwr    =       1
+     iwrap   =       0, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       1, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       1, igb     =       0, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =   8.00000, intdiel =   1.00000
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       1
+     restraint_wt =   1.00000
+
+Energy minimization:
+     maxcyc  =    1000, ncyc    =     500, ntmin   =       1
+     dx0     =   0.01000, drms    =   0.00010
+
+Ewald parameters:
+     verbose =       0, ew_type =       0, nbflag  =       1, use_pme =       1
+     vdwmeth =       1, eedmeth =       1, netfrc  =       0
+     Box X =   79.115   Box Y =   79.115   Box Z =   79.115
+     Alpha =  109.471   Beta  =  109.471   Gamma =  109.471
+     NFFT1 =   80       NFFT2 =   80       NFFT3 =   80
+     Cutoff=    8.000   Tol   =0.100E-04
+     Ewald Coefficient =  0.34864
+     Interpolation order =    4
+
+QMMM options:
+             ifqnt = True       nquant =      119
+              qmgb =        0  qmcharge =       -1   adjust_q =        2
+              spin =        1     qmcut =   8.0000    qmshake =        1
+          qmmm_int =        1
+     lnk_atomic_no =        1   lnk_dis =   1.0900 lnk_method =        1
+          qm_theory = QUICK    verbosity =        0
+            qmqmdx = Analytical
+          qm_ewald =        0 qm_pme = False 
+|  INFO: Old style inpcrd file read
+
+
+    LOADING THE CONSTRAINED ATOMS AS GROUPS
+
+
+   5.  REFERENCE ATOM COORDINATES
+
+  defa
+     Mask !(:60,57,62,138,140,207); matches 33375 atoms
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+default_name                                                                    
+ begin time read from input coords =     0.000 ps
+
+ Number of triangulated 3-point waters found:     9983
+
+     Sum of charges from parm topology file =  -0.00000008
+     Forcing neutrality...
+QMMM: ADJUSTING CHARGES
+QMMM: ----------------------------------------------------------------------
+QMMM: adjust_q = 2
+QMMM: Uniformly adjusting the charge of MM atoms to conserve total charge.
+QMMM:                             qm_charge =   -1
+QMMM: QM atom RESP charge sum (inc MM link) =    0.765
+QMMM: Adjusting each MM atom resp charge by =    0.000
+QMMM:          Sum of MM + QM region is now =   -0.000
+QMMM: ----------------------------------------------------------------------
+ ---------------------------------------------------
+ APPROXIMATING switch and d/dx switch using CUBIC SPLINE INTERPOLATION
+ using   5000.0 points per unit in tabled values
+ TESTING RELATIVE ERROR over r ranging from 0.0 to cutoff
+| CHECK switch(x): max rel err =   0.3338E-14   at   2.509280
+| CHECK d/dx switch(x): max rel err =   0.8261E-11   at   2.768360
+ ---------------------------------------------------
+| Local SIZE OF NONBOND LIST =    6152447
+| TOTAL SIZE OF NONBOND LIST =    6152447
+
+QMMM: Link Atom Information
+QMMM: ------------------------------------------------------------------------
+QMMM:  nlink =    12                   Link Coords              Resp Charges
+QMMM:    MM(typ)  -  QM(typ)      X         Y         Z         MM        QM
+QMMM:   859 C       861 N        3.516    -5.489     4.676     0.597    -0.416
+QMMM:   875 N       873 C        4.262    -6.251     1.929    -0.416     0.597
+QMMM:   899 C       916 n        0.064    -7.555     1.940     0.597    -0.445
+QMMM:   941 N3      923 c       -1.515    -6.193    -1.770     0.180     0.443
+QMMM:   955 C       957 N       -3.319    -4.768    -3.403     0.616    -0.348
+QMMM:   981 N       979 C       -5.583    -3.945    -5.198    -0.416     0.734
+QMMM:  2198 C      2200 N        2.514     7.207     4.918     0.590    -0.416
+QMMM:  2211 N      2209 C        2.636     8.153     0.676    -0.416     0.597
+QMMM:  2223 C      2225 N        2.865     7.834    -2.014     0.597    -0.516
+QMMM:  2240 N      2238 C        3.416     7.377    -5.702    -0.348     0.537
+QMMM:  3304 C      3306 N       -3.868    -2.565     7.221     0.597    -0.516
+QMMM:  3321 N      3319 C       -5.050     0.585     4.702    -0.416     0.537
+QMMM: ------------------------------------------------------------------------
+
+  QMMM: QM Region Cartesian Coordinates (*=link atom) 
+  QMMM: QM_NO.   MM_NO.  ATOM         X         Y         Z
+  QMMM:     1      861      N        4.1026   -4.7685    4.1061
+  QMMM:     2      862      H        4.9261   -4.4297    4.4297
+  QMMM:     3      863      C        3.6925   -4.2549    2.8197
+  QMMM:     4      864      H        2.7078   -3.9836    2.9558
+  QMMM:     5      865      C        4.4791   -3.0072    2.3941
+  QMMM:     6      866      H        4.0371   -2.6287    1.5368
+  QMMM:     7      867      C        4.4327   -1.9072    3.4266
+  QMMM:     8      868      H        4.9529   -1.0801    3.1194
+  QMMM:     9      869      H        3.4661   -1.6172    3.6144
+  QMMM:    10      870      H        4.8417   -2.2313    4.3059
+  QMMM:    11      871      O        5.8074   -3.3755    2.1030
+  QMMM:    12      872      H        6.2672   -2.6307    1.8097
+  QMMM:    13      873      C        3.7381   -5.3160    1.7289
+  QMMM:    14      874      O        3.2075   -5.1173    0.6390
+  QMMM:    15      901      C       -0.6950   -5.4179    1.8281
+  QMMM:    16      902      C        0.9673   -2.6987    0.1247
+  QMMM:    17      903      C        0.6021   -6.0871   -0.9971
+  QMMM:    18      904      C       -1.3222   -4.7732    3.0909
+  QMMM:    19      905      C        1.5903   -1.4824   -0.0239
+  QMMM:    20      906      C       -2.2522   -5.6492    3.8886
+  QMMM:    21      907      C        1.8741   -0.3490    0.8851
+  QMMM:    22      908      C        2.8092    0.6269    0.4864
+  QMMM:    23      909      C        1.2219   -0.2070    2.1229
+  QMMM:    24      910      C        3.0999    1.7155    1.3230
+  QMMM:    25      911      C        1.5147    0.8908    2.9462
+  QMMM:    26      912      C        2.4648    1.8344    2.5620
+  QMMM:    27      913      O        2.7084    2.8897    3.3799
+  QMMM:    28      914      C        0.0434   -4.4370    0.9169
+  QMMM:    29      915      C       -3.6163   -7.1829    4.4613
+  QMMM:    30      916      N        0.1744   -6.5188    2.2598
+  QMMM:    31      917      N       -2.8559   -6.7971    3.4527
+  QMMM:    32      918      C        0.9601   -3.6573   -0.9591
+  QMMM:    33      919      C       -2.6478   -5.3201    5.1564
+  QMMM:    34      920      N        0.3861   -3.1998    1.2770
+  QMMM:    35      921      N       -3.5229   -6.3147    5.5347
+  QMMM:    36      922      O        1.3736   -3.5359   -2.0977
+  QMMM:    37      923      C       -0.5105   -6.5921   -1.9160
+  QMMM:    38      924      N        0.3776   -4.7514   -0.3997
+  QMMM:    39      925      H        3.6774    2.9813    3.5132
+  QMMM:    40      926      H        0.9919    1.0468    3.8787
+  QMMM:    41      927      H        0.4721   -0.9224    2.4412
+  QMMM:    42      928      H        3.7966    2.4786    0.9929
+  QMMM:    43      929      H        3.3096    0.5573   -0.4769
+  QMMM:    44      930      H        2.0223   -1.3271   -1.0125
+  QMMM:    45      931      H        1.5068   -6.0246   -1.6127
+  QMMM:    46      932      H        0.8294   -6.8330   -0.2382
+  QMMM:    47      933      O       -0.2784   -7.3753   -2.8159
+  QMMM:    48      934      H       -1.5375   -5.8364    1.2664
+  QMMM:    49      935      H        0.8576   -6.3469    2.9965
+  QMMM:    50      936      H       -1.8800   -3.8777    2.8087
+  QMMM:    51      937      H       -0.5235   -4.4451    3.7566
+  QMMM:    52      938      H       -2.3880   -4.4778    5.7881
+  QMMM:    53      939      H       -4.0207   -6.3788    6.4191
+  QMMM:    54      940      H       -4.2768   -8.0411    4.4571
+  QMMM:    55      957      N       -3.0731   -4.2076   -4.3052
+  QMMM:    56      958      H       -2.4103   -4.5049   -4.9213
+  QMMM:    57      959      C       -3.6416   -2.9277   -4.6739
+  QMMM:    58      960      H       -3.6655   -2.4116   -3.7881
+  QMMM:    59      961      C       -2.7654   -2.1572   -5.6538
+  QMMM:    60      962      H       -2.5033   -2.7857   -6.4191
+  QMMM:    61      963      H       -3.3275   -1.4169   -6.0953
+  QMMM:    62      964      C       -1.5229   -1.5109   -5.1070
+  QMMM:    63      965      H       -1.1090   -2.1293   -4.4034
+  QMMM:    64      966      H       -0.8143   -1.4291   -5.8482
+  QMMM:    65      967      C       -1.7853   -0.1564   -4.4969
+  QMMM:    66      968      H       -0.9117    0.2659   -4.1610
+  QMMM:    67      969      H       -2.1370    0.4894   -5.2172
+  QMMM:    68      970      N       -2.7081   -0.2446   -3.3975
+  QMMM:    69      971      H       -3.5980    0.0523   -3.5728
+  QMMM:    70      972      C       -2.4733   -0.7175   -2.2075
+  QMMM:    71      973      N       -3.4156   -0.7950   -1.3395
+  QMMM:    72      974      H       -4.2917   -0.4932   -1.5174
+  QMMM:    73      975      H       -3.2620   -1.1143   -0.4603
+  QMMM:    74      976      N       -1.2861   -1.1392   -1.9026
+  QMMM:    75      977      H       -0.5839   -1.0892   -2.5218
+  QMMM:    76      978      H       -1.0919   -1.4631   -1.0443
+  QMMM:    77      979      C       -5.0802   -2.9788   -5.1640
+  QMMM:    78      980      O       -5.6537   -1.9501   -5.4854
+  QMMM:    79     2200      N        2.1245    7.0152    3.9185
+  QMMM:    80     2201      H        1.2598    6.6564    3.7678
+  QMMM:    81     2202      C        2.8857    7.2681    2.7208
+  QMMM:    82     2203      H        3.5187    8.0411    2.9695
+  QMMM:    83     2204      C        3.6824    6.0338    2.3469
+  QMMM:    84     2205      H        4.4603    6.2889    1.7245
+  QMMM:    85     2206      H        4.1338    5.6331    3.1827
+  QMMM:    86     2207      O        2.8697    5.0874    1.7013
+  QMMM:    87     2208      H        2.8970    4.3061    2.1985
+  QMMM:    88     2209      C        2.0805    7.7605    1.5282
+  QMMM:    89     2210      O        0.8539    7.6924    1.5232
+  QMMM:    90     2225      N        2.3555    7.1221   -2.6631
+  QMMM:    91     2226      H        1.4214    6.9584   -2.5727
+  QMMM:    92     2227      C        2.9442    6.4004   -3.7446
+  QMMM:    93     2228      H        3.9625    6.3352   -3.6031
+  QMMM:    94     2229      C        2.4026    4.9846   -3.8040
+  QMMM:    95     2230      H        2.5624    4.5232   -2.9015
+  QMMM:    96     2231      H        1.3846    5.0351   -3.9111
+  QMMM:    97     2232      C        2.9461    4.0918   -4.8917
+  QMMM:    98     2233      H        2.7043    4.5000   -5.8011
+  QMMM:    99     2234      H        3.9705    4.1145   -4.8528
+  QMMM:   100     2235      C        2.4744    2.6459   -4.8473
+  QMMM:   101     2236      O        1.5823    2.3282   -4.0228
+  QMMM:   102     2237      O        2.9990    1.8197   -5.6309
+  QMMM:   103     2238      C        2.6088    7.1574   -5.0035
+  QMMM:   104     2239      O        1.4467    7.5144   -5.1973
+  QMMM:   105     3306      N       -4.3772   -2.3031    6.2936
+  QMMM:   106     3307      H       -5.1782   -2.7437    6.0335
+  QMMM:   107     3308      C       -3.9774   -1.2529    5.3901
