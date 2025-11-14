@@ -1,0 +1,13 @@
+NPT 300K; protein backbone + 5SQ heavy atoms restrained (0.1)
+&cntrl
+  imin=0, irest=1, ntx=5, ig=-1,
+  ntb=2, ntp=1, pres0=1.0, taup=2.0,
+  ntt=3, temp0=300.0, gamma_ln=1.0, nscm=0,
+  nstlim=500000, dt=0.002,
+  ntc=2, ntf=2, cut=8.0,
+  iwrap=0, ioutfm=1, ntxo=2,
+  ntpr=5000, ntwx=5000, ntwr=10000,
+  ntr=1, restraint_wt=0.1,
+  restraintmask='((!:WAT,Na+,Cl-,5SQ) & @N,CA,C) | (:5SQ@CA1,CA2,CA3,CB1,CB2,CG1,CG2,CD1,CD2,CE1,CE2,CZ1,OH,C1,N1,C2,N2,O2,C3,N3,O3)'
+/
+

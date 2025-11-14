@@ -1,0 +1,10 @@
+local fix of 59–61 only
+&cntrl
+  imin=1, ntmin=1,
+  maxcyc=400, ncyc=200,
+  ntb=1,
+  cut=10.0,
+  ntpr=50,
+  ntr=1, restraint_wt=500.0,
+  restraintmask='!:59-61'
+/

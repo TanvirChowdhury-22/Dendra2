@@ -1,28 +1,56 @@
 source leaprc.protein.ff14SB
-addPdbResMap { { 1 "VAL" "VAL" } { 1 "ASN" "ASN" } }   
 source leaprc.gaff2
-loadamberparams 5SQ_prot.frcmod               
 
-protA = loadpdb Res_1-59.pdb            
-protB = loadpdb Res_61-rest.pdb 
-SQU   = loadmol2 5SQ_prot_updated.mol2              
+# Chromophore adjustments/parameters
+loadamberparams 5SQ_prot.frcmod
 
+# --- Important residue mapping for split protein ---
+# Treat VAL(59) as an *internal* residue (avoid adding OXT)
+# Treat ASN(61) as an *internal* residue (avoid adding H2/H3 on backbone N)
+addPdbResMap {{ 1 "VAL" "VAL" } { 0 "ASN" "ASN" }}
+
+# --- Load protein fragments ---
+protA = loadPdb Res_1-59.pdb
+protB = loadPdb Res_61-rest.pdb
+
+# If LEaP read an extra 'H1' on ASN 61 (artifact of naming),
+# remove it so ASN 61 has exactly one backbone H.
+# (If this atom isn't present in your file, comment this line.)
+remove protB protB.61.H1
+
+# --- Load the chromophore and remove backbone-cap atoms from its mol2 ---
+SQU = loadMol2 5SQ_prot_updated.mol2
+remove SQU SQU.1.N
+remove SQU SQU.1.C
+
+# --- Combine and make covalent links ---
 complex = combine { protA SQU protB }
-remove complex complex.60.N                         
-remove complex complex.60.C                 
 
-bond complex.59.C   complex.60.N1              
-bond complex.60.C3  complex.61.N          
+# Link 59.C (protein) -> 60.N1 (5SQ)
+bond complex.59.C   complex.60.N1
 
-check complex
+# Link 60.C3 (5SQ) -> 61.N (protein)
+bond complex.60.C3  complex.61.N
 
-saveamberparm complex complex_prot_updated.prmtop complex_prot_updated.inpcrd
-savepdb complex complex_prot_updated.pdb
+# --- Report/validate before solvation ---
+charge complex          # Expect: -1 total charge (typical with one HIP)
+check complex           # Geometry sanity check (close-contact warnings are okay pre-minimization)
 
+# Save the *dry* system
+saveAmberParm complex complex_prot_updated.prmtop complex_prot_updated.inpcrd
+savePdb      complex complex_prot_updated.pdb
+
+# --- Solvate and neutralize ---
 source leaprc.water.tip3p
 solvateOct complex TIP3PBOX 10.0
-addIonsRand complex Na+ 0 
 
-saveamberparm complex solvated_complex_prot_updated.prmtop solvated_complex_prot_updated.inpcrd
-savepdb       complex solvated_complex_prot_updated.pdb
+# Print charge before/after ion placement
+charge complex
+addIonsRand complex Na+ 0     # Neutralize the -1 net charge with 1 Na+
+charge complex
+
+# Save the *solvated* system
+saveAmberParm complex solvated_complex_prot_updated.prmtop solvated_complex_prot_updated.inpcrd
+savePdb      complex solvated_complex_prot_updated.pdb
+
 quit

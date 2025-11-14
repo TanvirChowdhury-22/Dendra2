@@ -1,0 +1,25 @@
+# cpptraj -p solvated_complex_prot_updated.prmtop -i rmsd_rg_analysis.in
+
+parm solvated_complex_prot_updated.prmtop
+
+trajin npt-1.nc
+trajin npt-2.nc
+trajin npt-3.nc
+trajin npt-4.nc
+trajin npt-5.nc
+trajin npt-6.nc
+trajin npt-7.nc
+
+# Center and image the system
+center !:WAT,HOH,Na+,Cl- mass origin
+autoimage
+image origin center familiar
+
+# Align all frames to the first frame using backbone heavy atoms (N, CA, C, O)
+rms FirstBB first :1-220@N,CA,C,O
+rms RMSD_BB :1-220@N,CA,C,O out rmsd_all.dat time 2.0
+
+# Radius of Gyration for entire solute (protein + ligand, excluding water/ions)
+radgyr Rg_all !:WAT,Na+,Cl- out Rg_all.dat time 2.0
+
+run

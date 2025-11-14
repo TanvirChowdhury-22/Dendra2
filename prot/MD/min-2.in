@@ -1,0 +1,7 @@
+Whole-system minimization with no restraints
+&cntrl
+  imin=1, ntmin=1,
+  maxcyc=10000, ncyc=2000,
+  ntb=1, cut=10.0,
+  ntpr=100
+/

@@ -1,3 +1,16 @@
+===================================================================================================
+
+IMPORTANT CHANGES TO THE SIMULATION OF THE STRUCUTRE IS UNDERWAY. PLEASE STAY WITH US.
+
+MODIFICATIONS UPLOADED ON NOV 15, 2025:
+- Updated resp charge fitting to distribute in total exactly 0 charge to the protonated chromophore.
+- Performed NVT and NPT md of the protonated structure before QMMM.
+- Analysis of the MD simulations.
+- Snapshots taken from last NPT dynamics of 10 NS for QMMM 
+
+====================================================================================================
+
+
 Amber/TeraChem QM/MM setups for a Dendra2 chain A with a covalently bound chromophore 5SQ:
 	
  	•	prot/ – chromophore protonated (phenol, net 0 in isolation)
@@ -12,15 +25,17 @@ SANDER=/full/path/to/sander bash prot/MD/run_qmmm_prot.sh
 Top-level layout
 
 	Dendra2/
-		prot/                    # protonated build
-    		MD/                    # protonated QM/MM mdins + runner script
-    		build_files/           # inputs used during protonated system construction
+		prot/                  # protonated build
+    		QMMM/                  # protonated QM/MM mdins + runner script
+    		MD/                    # Classical MD
+                build_files/           # inputs used during protonated system construction
     		complex_prot.*         # pre-solvation protonated complex (prmtop/inpcrd/pdb)
     		solvated_complex_prot.*# protonated solvated system (prmtop/inpcrd/pdb)
     		min_local_solv.*       # protonated local only minimization for residues 59, 60, 61 (before QM/MM)
-		deprot/                  # deprotonated build
-    		MD/                    # deprotonated QM/MM mdins + runner script
-    		build_files/           # inputs used during deprotonated system construction
+		deprot/                # deprotonated build
+    		QMMM/                  # deprotonated QM/MM mdins + runner script (IN PROGRESS)
+    		MD/                    # Classical MD (IN PROGRESS) 
+                build_files/           # inputs used during deprotonated system construction
     		complex_deprot.*       # pre-solvation deprotonated complex (prmtop/inpcrd/pdb)
     		solvated_complex_deprot.*# deprotonated solvated system (prmtop/inpcrd/pdb)
     		min_local_solv_deprot.*# deprotonated local only minimization for residues 59, 60, 61 (before QM/MM)
@@ -73,7 +88,7 @@ QM region charge check using PARMED
 	Number of anions:      0
 	Num. of solvent mols:  0
 	Num. of unknown res:   1
-	Total charge (e-):     -0.9140
+	Total charge (e-):     -1
 	Total mass (amu):      851.8660
 	Number of atoms:       108
 	Number of residues:    5
@@ -116,12 +131,12 @@ QM region charge check using PARMED
 	Number of anions:      0
 	Num. of solvent mols:  0
 	Num. of unknown res:   1
-	Total charge (e-):     -1.7880
+	Total charge (e-):     -2
 	Total mass (amu):      850.8580
 	Number of atoms:       107
 	Number of residues:    5
-	Residue set:           ***, ARG, GLU, THR
-	Residue count:         ***: 1, ARG: 1, GLU: 2, THR: 1
+	Residue set:           5SQ, ARG, GLU, THR
+	Residue count:         5SQ: 1, ARG: 1, GLU: 2, THR: 1
 	System volume (ang^3): 381233.69
 	System density (g/mL): 0.003706
 	
