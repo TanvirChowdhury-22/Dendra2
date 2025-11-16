@@ -1,10 +1,8 @@
 source leaprc.protein.ff14SB
 source leaprc.gaff2
 
-# Chromophore adjustments/parameters
 loadamberparams 5SQ_prot.frcmod
 
-# --- Important residue mapping for split protein ---
 # Treat VAL(59) as an *internal* residue (avoid adding OXT)
 # Treat ASN(61) as an *internal* residue (avoid adding H2/H3 on backbone N)
 addPdbResMap {{ 1 "VAL" "VAL" } { 0 "ASN" "ASN" }}
@@ -13,7 +11,7 @@ addPdbResMap {{ 1 "VAL" "VAL" } { 0 "ASN" "ASN" }}
 protA = loadPdb Res_1-59.pdb
 protB = loadPdb Res_61-rest.pdb
 
-# If LEaP read an extra 'H1' on ASN 61 (artifact of naming),
+# If LEaP read an extra 'H1' on ASN 61,
 # remove it so ASN 61 has exactly one backbone H.
 # (If this atom isn't present in your file, comment this line.)
 remove protB protB.61.H1
@@ -32,8 +30,8 @@ bond complex.59.C   complex.60.N1
 # Link 60.C3 (5SQ) -> 61.N (protein)
 bond complex.60.C3  complex.61.N
 
-# --- Report/validate before solvation ---
-charge complex          # Expect: -1 total charge (typical with one HIP)
+# --- Validate before solvation ---
+charge complex          # Expect: -1 total charge (With one HIP)
 check complex           # Geometry sanity check (close-contact warnings are okay pre-minimization)
 
 # Save the *dry* system
@@ -44,7 +42,7 @@ savePdb      complex complex_prot_updated.pdb
 source leaprc.water.tip3p
 solvateOct complex TIP3PBOX 10.0
 
-# Print charge before/after ion placement
+# Print charge before ion placement
 charge complex
 addIonsRand complex Na+ 0     # Neutralize the -1 net charge with 1 Na+
 charge complex
